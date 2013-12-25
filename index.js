@@ -99,7 +99,7 @@ var server = http.createServer(function (req,res){
 		res.writeHead(404);
 		res.end();
 	}
-}).listen(3000,'0.0.0.0');
+}).listen(process.env.PORT || 3000);
 server.on('clientError', function (e,socket){
 	console.error(e);
 });
