@@ -7,7 +7,7 @@ var waitingName;
 
 var server = http.createServer(function (req,res){
 	console.log('Request!' + req.url);
-	if (req.headers['user-agent'] = 'WOLF RPG EDITOR'){
+	if (req.headers['user-agent'] == 'WOLF RPG EDITOR'){
 		res.writeHead(200,{'Content-Type':'text/plain'});
 		var reqs = req.url.split('/');
 		switch (reqs[1]){
