@@ -46,9 +46,9 @@ var server = http.createServer(function (req,res){
 				}
 				break;
 			case 'end':// /end/id/code
-				if (reqs[2] in jobs){
-					jobs[reqs[2]].end('end,' + reqs[3]);
-					delete jobs[reqs[2]];
+				if (reqs[3] in jobs){
+					jobs[reqs[3]].end('end,' + reqs[2]);
+					delete jobs[reqs[3]];
 					res.end('end');
 				}else{
 					res.end('error');
@@ -72,7 +72,7 @@ var server = http.createServer(function (req,res){
 				});
         break;
 			case 'bgm':
-				fs.readFile('files/bgm', function(err,data){
+				fs.readFile('bgm', function(err,data){
 					if(err){
 						res.writeHead(404);
 						res.end('Error! Cannot get BGM file!');
@@ -82,7 +82,7 @@ var server = http.createServer(function (req,res){
 				});
         break;
 			case 'update':
-				fs.readFile('files/update', function(err,data){
+				fs.readFile('BasicData.wolf', function(err,data){
 					if(err){
 						res.writeHead(404);
 						res.end('Error! Cannot get Update file!');
