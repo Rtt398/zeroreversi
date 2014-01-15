@@ -91,6 +91,16 @@ var server = http.createServer(function (req,res){
 					}
 				});
         break;
+      case 'history':
+        fs.readFile('history.txt', function(err,data){
+					if(err){
+						res.writeHead(404);
+						res.end('Error! Cannot get History file!');
+					}else{
+						res.end(data);
+					}
+				});
+        break;
 			default:
 				res.writeHead(404);
 				res.end();
