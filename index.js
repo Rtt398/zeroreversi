@@ -4,6 +4,7 @@ var fs = require('fs');
 var jobs = [];
 var waiting;
 var waitingName;
+var timeoutid;
 
 var server = http.createServer(function (req,res){
 	console.log('Request!' + req.url);
@@ -19,6 +20,7 @@ var server = http.createServer(function (req,res){
 						id = Math.floor(Math.random()*999999)+1;
 					}while (id.toString() in jobs);
 					waiting.end(id + ',1,' + reqs[2] + ',' + reqs[3]);
+          timeoutid = setTimeout(function(){jobs[id].end('error');},30000)
 					jobs[id] = res;
 					waiting = null;
 				}else{
@@ -29,6 +31,7 @@ var server = http.createServer(function (req,res){
 				break;
 			case 'get':// /get/id/exp/name
 				if (reqs[2] in jobs){
+          clearTimeout(timeoutid);
 					console.log('get:' + reqs[2]);
 					jobs[reqs[2]].end(reqs[2] + ',-1,' +reqs[3] + ',' + reqs[4]);
 					jobs[reqs[2]] = res;
