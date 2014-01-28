@@ -20,7 +20,7 @@ var server = http.createServer(function (req,res){
 						id = Math.floor(Math.random()*999999)+1;
 					}while (id.toString() in jobs);
 					waiting.end(id + ',1,' + reqs[2] + ',' + reqs[3]);
-          timeoutid = setTimeout(function(){jobs[id].end('error');delete jobs[id];},30000)
+          timeoutid = setTimeout(function(){jobs[id].writeHead(404);jobs[id].end('error');delete jobs[id];},30000)
 					jobs[id] = res;
 					waiting = null;
 				}else{
