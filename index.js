@@ -1,7 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 
-var jobs = [];
+var jobs = {};
 var waiting;
 var waitingName;
 var timeoutid;
